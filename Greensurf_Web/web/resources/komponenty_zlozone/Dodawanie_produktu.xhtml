@@ -1,0 +1,86 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:composite="http://xmlns.jcp.org/jsf/composite"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <composite:interface>
+        <composite:attribute name="kategoriaLable"/>
+        <composite:attribute name="kategoriaValue"/>
+        <composite:attribute name="titleKategoria"/>
+        <composite:attribute name="kategoriaMessage"/>
+        <composite:attribute name="nazwaLable"/>
+        <composite:attribute name="nazwaValue"/>
+        <composite:attribute name="titleNazwa"/>
+        <composite:attribute name="nazwaMessage"/>
+        <composite:attribute name="cenaLable"/>
+        <composite:attribute name="cenaValue"/>
+        <composite:attribute name="titleCena"/>
+        <composite:attribute name="cenaMessage"/>
+        <composite:attribute name="promocjaLable"/>
+        <composite:attribute name="promocjaValue"/>
+        <composite:attribute name="titlePromocja"/>
+        <composite:attribute name="promocjaMessage"/>
+        <composite:attribute name="dataLable"/>
+        <composite:attribute name="dataValue"/>
+        <composite:attribute name="titleData"/>
+        <composite:attribute name="dataMessage"/>
+        <composite:attribute name="dodajButtonText"/>
+        <composite:attribute name="dodajButtonText1"/>
+        <composite:attribute name="dodajButtonAction" method-signature="java.lang.String action()"/>
+        <composite:attribute name="dodajButtonAction1" method-signature="java.lang.String action()"/>    
+    </composite:interface>
+    <composite:implementation>
+        <h:form>
+            <h:panelGrid columns="2" id="textPanel">
+                #{cc.attrs.kategoriaLable}:
+                <h:inputText id="kategoria" value="#{cc.attrs.kategoriaValue}"
+                             title="#{cc.attrs.titleKategoria}" required="true"
+                             requiredMessage="#{cc.attrs.kategoriaMessage}"
+                             disabled="#{managed_produkt.zmiana==0}"/>
+                #{cc.attrs.nazwaLable}:
+                <h:inputText id="nazwa" value="#{cc.attrs.nazwaValue}"
+                             title="#{cc.attrs.titleNazwa}" required="true"
+                             requiredMessage="#{cc.attrs.nazwaMessage}"
+                             disabled="#{managed_produkt.zmiana==0}">
+                    <f:valueChangeListener binding="#{managed_produkt.zmiana1}"/>
+                </h:inputText>
+                #{cc.attrs.cenaLable}:
+                <h:inputText id="cena" value="#{cc.attrs.cenaValue}"
+                             title="#{cc.attrs.titleCena}" required="true"
+                             requiredMessage="#{cc.attrs.cenaMessage}"
+                             converter="#{managed_produkt.number_convert}"
+                             converterMessage="Blad! Poprawny format: 0,0 zł lub 0 zł"
+                             validator="#{managed_produkt.zakresceny}">
+                    <f:valueChangeListener binding="#{managed_produkt.zmiana2}"/>
+                </h:inputText>
+                #{cc.attrs.cenaLable}:
+                <h:inputText id="promocja" value="#{cc.attrs.promocjaValue}"
+                             title="#{cc.attrs.titlePromocja}" required="true"
+                             requiredMessage="#{cc.attrs.promocjaMessage}"
+                             validator="#{managed_produkt.zakrespromocji}">
+                    <f:converter converterId="javax.faces.Long"/>
+                </h:inputText>
+                #{cc.attrs.dataLable}:
+                <h:inputText id="data" value="#{cc.attrs.dataValue}"
+                             title="#{cc.attrs.titleData}" required="true"
+                             requiredMessage="#{cc.attrs.dataMessage}">
+                    <f:convertDateTime pattern="dd-MM-yyyy" />
+                </h:inputText>
+            </h:panelGrid>
+            <h:commandButton action="#{cc.attrs.dodajButtonAction}" 
+                             value="#{cc.attrs.dodajButtonText}"
+                             rendered="#{managed_produkt.zmiana==1}">
+                   <f:actionListener  binding="#{managed_produkt}"/>
+            </h:commandButton>
+            <h:commandButton action="#{cc.attrs.dodajButtonAction1}" 
+                             value="#{cc.attrs.dodajButtonText1}"
+                             rendered="#{managed_produkt.zmiana==0}">
+                   <f:actionListener  binding="#{managed_produkt}"/>
+            </h:commandButton>
+
+        </h:form>
+    </composite:implementation>
+
+</html>
+

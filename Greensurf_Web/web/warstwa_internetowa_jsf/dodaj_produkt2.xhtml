@@ -1,0 +1,51 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:komponenty_zlozone="http://xmlns.jcp.org/jsf/composite/komponenty_zlozone">
+    
+    <body>
+      
+        
+        <ui:composition template="./../template.xhtml">
+
+            <ui:define name="title">
+                <h:outputText
+                    value="#{bundle['dodaj_produkt2.tytul']}">
+
+                </h:outputText>
+            </ui:define>
+               
+            <ui:define name="content">
+                <komponenty_zlozone:Dodawanie_produktu
+                    kategoriaLable="#{bundle['dodaj_produkt2.kategorie']}#{bundle['dodaj_produkt2.produktu']}"
+                    kategoriaValue="#{managed_produkt.kategoria}"
+                    titleKategoria="#{bundle['dodaj_produkt2.kategorie']}"
+                    kategoriaMessage="#{bundle['dodaj_produkt2.blad']}#{bundle['dodaj_produkt2.kategorie']}"
+                    nazwaLable="#{bundle['dodaj_produkt2.nazwe']}#{bundle['dodaj_produkt2.produktu']}"
+                    nazwaValue="#{managed_produkt.nazwa}"
+                    titleNazwa="#{bundle['jsf.dodaj_produkt2.podaj_nazwa']}"
+                    nazwaMessage="#{bundle['jsf.dodaj_produkt2.podaj_nazwa_blad']}"
+                    cenaLable="#{bundle['dodaj_produkt2.cene']}#{bundle['dodaj_produkt2.produktu']}"
+                    cenaValue="#{managed_produkt.cena}"
+                    titleCena="#{bundle['dodaj_produkt2.cene']}"
+                    cenaMessage="#{bundle['dodaj_produkt2.blad']}#{bundle['dodaj_produkt2.cene']}"
+                    promocjaLable="#{bundle['dodaj_produkt2.promocja']}#{bundle['dodaj_produkt2.produktu']}"
+                    promocjaValue="#{managed_produkt.promocja}"
+                    titlePromocja="#{bundle['dodaj_produkt2.promocja']}"
+                    promocjaMessage="#{bundle['dodaj_produkt2.blad']}#{bundle['dodaj_produkt2.promocja']}"
+                    dataLable="#{bundle['dodaj_produkt2.data']}"
+                    dataValue="#{managed_produkt.data_produkcji}"
+                    titleData="#{bundle['dodaj_produkt2.data']}"
+                    dataMessage="#{bundle['dodaj_produkt2.blad']}#{bundle['dodaj_produkt2.data']}"
+                    dodajButtonText="#{bundle['dodaj_produkt2.akcja']}"
+                    dodajButtonAction="#{managed_produkt.dodaj_produkt}"/>
+                    
+                    
+               
+            </ui:define>
+        </ui:composition>
+    </body>
+</html>

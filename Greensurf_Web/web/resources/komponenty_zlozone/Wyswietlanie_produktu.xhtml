@@ -1,0 +1,64 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:composite="http://xmlns.jcp.org/jsf/composite"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <composite:interface>
+        <composite:attribute name="kategoriaLable"/>
+        <composite:attribute name="kategoriaValue"/>
+        <composite:attribute name="nazwaLable"/>
+        <composite:attribute name="nazwaValue"/>
+        <composite:attribute name="cenaLable"/>
+        <composite:attribute name="cenaValue"/>
+        <composite:attribute name="promocjaLable"/>
+        <composite:attribute name="promocjaValue"/>
+        <composite:attribute name="cena_bruttoLable"/>
+        <composite:attribute name="cena_bruttoValue"/>
+        <composite:attribute name="dataLable"/>
+        <composite:attribute name="dataValue"/>
+        <composite:attribute name="pokazButtonText"/>
+        
+        <composite:attribute name="pokazButtonAction" method-signature="java.lang.String action()"/>
+       
+        <composite:attribute name="brak"/>
+        <composite:attribute name="brakdanych"/>
+        <composite:attribute name="standanych1"/>
+        <composite:attribute name="standanych2"/>
+    </composite:interface>
+    <composite:implementation>
+        <h:form>
+            <h:outputText escape="#{cc.attrs.brak}" value="#{cc.attrs.brakdanych}"
+                          rendered="#{cc.attrs.standanych1}"/>
+            <h:panelGrid  columns="2" rendered="#{cc.attrs.standanych2}">
+                #{cc.attrs.kategoriaLable}:
+                <h:outputText id="kategoria" value="#{cc.attrs.kategoriaValue}"/>
+                #{cc.attrs.nazwaLable}:
+                <h:outputText id="nazwa" value="#{cc.attrs.nazwaValue}"/>
+                #{cc.attrs.cenaLable}:
+                <h:outputText id="cena" value="#{cc.attrs.cenaValue}">
+                    <f:convertNumber binding="#{managed_produkt.number_convert}" pattern="####.## z&#322;"/>
+                </h:outputText>
+                #{cc.attrs.promocjaLable}:
+                <h:outputText id="promocja" value="#{cc.attrs.promocjaValue}">
+                <f:convertNumber currencySymbol="%" type="currency"/>
+                </h:outputText>
+                #{cc.attrs.cena_bruttoLable}:
+                <h:outputText id="cena_brutto" value="#{cc.attrs.cena_bruttoValue}">
+                <f:convertNumber binding="#{managed_produkt.number_convert}" pattern="####.## z&#322;" />
+                </h:outputText>
+                #{cc.attrs.dataLable}:
+                <h:outputText id="data" value="#{cc.attrs.dataValue}">
+                <f:convertDateTime dateStyle="full"  timeStyle="long" type="both" locale="pl_PL"/>
+                </h:outputText>
+            </h:panelGrid>
+            <h:commandButton action="#{cc.attrs.pokazButtonAction}"
+                             value="#{cc.attrs.pokazButtonText}"
+                             />
+            
+        </h:form>
+    </composite:implementation>
+
+</html>
+
